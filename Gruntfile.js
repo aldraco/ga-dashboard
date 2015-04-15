@@ -62,6 +62,10 @@ module.exports = function (grunt) {
                     livereload: '<%= connect.options.livereload %>'
                 }
             },
+            karma: {
+                files: ['app/js/**/*.js', 'test/spec/**/*.js'],
+                tasks: ['karma:unit:run']
+            },
             jsTest: {
                 files: ['test/spec/{,*/}*.js'],
                 tasks: ['newer:jshint:test', 'karma']
@@ -391,7 +395,7 @@ module.exports = function (grunt) {
         karma: {
             unit: {
                 configFile: 'test/karma.conf.js',
-                singleRun: true
+                autoWatch: true
             }
         }
     });

@@ -2,16 +2,14 @@
 
 angular.module('EventsDashboard')
 	.controller('DashboardController',['$scope', 'EventsFactory', function($scope, EventsFactory) {
-		$scope.events;
-
-		$scope.getAllEvents = function() {
-			return EventsFactory.query({},function(events) {
+		$scope.getEvents = function() {
+			$scope.events = "Fetching Data ...";
+			EventsFactory.getEvents().then(function(events) {
 				$scope.events = events;
-				console.log("got events");
-				console.log(events);
+			}, function() {
+				$scope.events = "Could not obtain data at this time.";
 			});
-		};
-
-		$scope.getAllEvents();
-		console.log($scope.events);
+		}
+		$scope.getEvents();
+		
 	}]);
