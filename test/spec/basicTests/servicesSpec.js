@@ -1,10 +1,12 @@
 // servicesTesting
 'use strict';
 
-describe('Events Service: \n', function() {
-	beforeEach(function() {
-		module('EventsDashboard');
-	});
+describe('Dashboard Factory: \n', function() {
+	beforeEach(module('EventsDashboard'));
+
+	it('should get an instance of my Factory', inject(function(EventsFactory) {
+		expect(EventsFactory).toBeDefined();
+	}));
 });
 
 
