@@ -14,4 +14,7 @@ angular.module('EventsDashboard')
       'AngularJS',
       'Karma'
     ];
+  })
+  .controller('NavigationController', function($rootScope) {
+  	$rootScope.activeTab = 'home';
   });

@@ -47,13 +47,13 @@ module.exports = function(config) {
     ngHtml2JsPreprocessor: {
       // strip this from the file path
       stripPrefix: 'app/',
-      //stripSufix: '.ext'
+      stripSufix: '.ext',
       // prepend this to the
-      prependPrefix: 'views/',
-      'moduleName' : 'Templates',
-      cacheIdFromPath: function(filepath) {
+      //prependPrefix: 'views/',
+      moduleName : 'Templates'
+      /*cacheIdFromPath: function(filepath) {
          return filepath.match(/\/app\/views\/templates\/.*\.html/);
-     }
+     }*/
     },
 
     // list of files / patterns to exclude

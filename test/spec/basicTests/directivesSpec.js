@@ -1,26 +1,29 @@
-/*describe('custom directives:', function() {
-	var $compile, $rootScope;
+describe('custom directives: admin panel', function() {
+	var elem, scope;
 
 	beforeEach(module('EventsDashboard'));
-	
 
-	beforeEach(inject(function(_$compile_, _$rootScope_) {
-		$compile = _$compile_;
-		$rootScope = _$rootScope_;
+	// this is compiled as a module by the preprocessor
+	beforeEach(module('Templates'));
 
+	beforeEach(inject(function($rootScope, $compile) {
+		elem = angular.element(
+			'<div>' +
+				'<admin-navpanel></admin-navpanel>' +
+			'<div>');
+		scope = $rootScope;
+		$compile(elem)(scope);
+		scope.$digest();
 	}));
-		
-	beforeEach(module('views/templates/admin-navpanel.html'));
 
-	it('replaces the element with the correct content', function() {
-		var elem = $compile('<admin-navpanel></admin-navpanel>')($rootScope);
 
-		$rootScope.$digest();
+	it('replaces the element with the correct content', inject(function($compile, $rootScope) {
+		var links = elem.find('ul li a');
 
-		expect(elem.html()).toContain("By Country");
-		expect(elem.html()).toContain("Over Time");
-	});
+		expect(elem.html()).toContain("Summary");
+		//expect(elem.html()).toContain("User Statistics");
+	}));
 
 
 
-});*/
+});
