@@ -16,6 +16,10 @@ module.exports = function(config) {
     // testing framework to use (jasmine/mocha/qunit/...)
     frameworks: ['jasmine'],
 
+    preprocessors: {
+      'app/views/**/*.html': ['ng-html2js']
+    },
+
     // list of files / patterns to load in the browser
     files: [
       // bower:js
@@ -33,8 +37,24 @@ module.exports = function(config) {
       // endbower
       'app/scripts/**/*.js',
       'test/mock/**/*.js',
-      'test/spec/**/*.js'
+      'test/spec/**/*.js',
+      '*.html',
+      '*.html.ext',
+      // if you wanna load template files in nested directories, you must use this
+      'app/views/**/*.html'
     ],
+
+    ngHtml2JsPreprocessor: {
+      // strip this from the file path
+      stripPrefix: 'app/',
+      //stripSufix: '.ext'
+      // prepend this to the
+      prependPrefix: 'views/',
+      'moduleName' : 'Templates',
+      cacheIdFromPath: function(filepath) {
+         return filepath.match(/\/app\/views\/templates\/.*\.html/);
+     }
+    },
 
     // list of files / patterns to exclude
     exclude: [
@@ -58,7 +78,8 @@ module.exports = function(config) {
     // Which plugins to enable
     plugins: [
       'karma-chrome-launcher',
-      'karma-jasmine'
+      'karma-jasmine',
+      'karma-ng-html2js-preprocessor'
     ],
 
     reporters: ['dots'],
@@ -71,7 +92,7 @@ module.exports = function(config) {
 
     // level of logging
     // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-    logLevel: config.LOG_INFO,
+    logLevel: config.LOG_INFO
 
     // Uncomment the following lines if you are using grunt's server to run the tests
     // proxies: {
