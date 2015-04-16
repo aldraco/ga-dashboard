@@ -43,9 +43,9 @@
           <div class="collapse navbar-collapse" id="js-navbar-collapse">
 
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#/">Home</a></li>
-              <li><a ng-href="#/dashboard">Dashboard</a></li>
-              <li><a ng-href="#/">Contact</a></li>
+              <li class="active"><a ui-sref="home">Home</a></li>
+              <li><a ui-sref="dashboard">Dashboard</a></li>
+              <li><a ui-sref="contact">Contact</a></li>
             </ul>
           </div>
         </div>
@@ -53,7 +53,7 @@
     </div>
 
     <div class="container">
-    <div ng-view=""></div>
+    <div ui-view=""></div>
     </div>
 
     <div class="footer">
@@ -80,11 +80,11 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/ng-lodash/build/ng-lodash.js"></script>
-    <script src="bower_components/Chart.js/Chart.min.js"></script>
+    <script src="bower_components/Chart.js/Chart.js"></script>
     <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

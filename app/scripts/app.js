@@ -12,22 +12,22 @@ angular
   .module('EventsDashboard', [
     'ngAnimate',
     'ngResource',
-    'ngRoute',
+    'ui.router',
     'ngTouch',
     'ngLodash',
     'chart.js'
   ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
+  .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
+    $stateProvider
+      .state('home', {
+        url: '/',
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/dashboard', {
+      .state('dashboard', {
+        url: '/dashboard',
         templateUrl: 'views/dashboard.html',
         controller: 'DashboardController'
-      })
-      .otherwise({
-        redirectTo: '/'
       });
-  });
+      $urlRouterProvider.otherwise('/');
+  }]);
