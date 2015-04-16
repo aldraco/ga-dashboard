@@ -2,6 +2,7 @@
   "name": "zyring",
   "version": "0.0.0",
   "dependencies": {
+    "lodash": "^3.6.0",
     "socket.io-client": "^1.3.4"
   },
   "repository": {},

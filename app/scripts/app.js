@@ -13,7 +13,9 @@ angular
     'ngAnimate',
     'ngResource',
     'ngRoute',
-    'ngTouch'
+    'ngTouch',
+    'ngLodash',
+    'chart.js'
   ])
   .config(function ($routeProvider) {
     $routeProvider

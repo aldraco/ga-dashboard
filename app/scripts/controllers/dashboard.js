@@ -1,9 +1,13 @@
 // Dashboard/Events controller
 
+
 angular.module('EventsDashboard')
-	.controller('DashboardController',['$scope', 'EventsFactory', function($scope, Events) {
+	.controller('DashboardController',['$scope', 'EventsFactory', 'lodash', function($scope, Events, _) {
 		$scope.loadMessage = 'Loading events ...';
 
-		$scope.events = Events.query();
+		Events.query().$promise.then(function(events) {
+			$scope.events = events;
+			$scope.countryCount = _.countBy(events, 'country');
+		});
 		
 	}]);
