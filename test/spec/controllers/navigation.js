@@ -16,7 +16,8 @@ describe('Controller: NavigationController', function () {
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
+  it('should have an active tab being tracked', function () {
     expect(scope.activeTab).toBe('home');
+
   });
 });

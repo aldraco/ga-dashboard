@@ -17,4 +17,10 @@ angular.module('EventsDashboard')
   })
   .controller('NavigationController', function($rootScope) {
   	$rootScope.activeTab = 'home';
+
+    $rootScope.changeTab = function(newTab) {
+        $state.go(newTab);
+    };
+
+
   });

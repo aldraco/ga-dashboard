@@ -64,15 +64,20 @@ describe('Dashboard Controller: \n', function() {
 	it('should successfully count the hits from each country', 
 		inject(function($rootScope, $controller, EventsFactory, lodash) {
 			var $scope = $rootScope.$new();
-
-			$controller('DashboardController', {$scope:$scope, EventsFactory:EventsFactory, lodash:lodash});
+			
+			var ctrl = $controller('DashboardController', {$scope:$scope, EventsFactory:EventsFactory, lodash:lodash});
 
 			$httpBackend.flush();
 
-			expect($scope.countryCount).not.toBe(undefined);
-			expect($scope.countryCount).toEqual(jasmine.objectContaining({
+			expect(ctrl.countryCount).not.toBe(undefined);
+			expect(ctrl.countryCount).toEqual(jasmine.objectContaining({
 				"US" : 2
 			}));
+			expect($scope.byCountry.data).not.toBe(undefined);
+			expect($scope.byCountry.labels).not.toBe(undefined);
+			expect($scope.byCountry.data).toContain(2);
+			expect($scope.byCountry.labels).toContain("US");
+
 
 		}));
 

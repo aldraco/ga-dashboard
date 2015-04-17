@@ -39,6 +39,11 @@ angular
         url: '/dashboard/user-statistics',
         controller: 'DashboardController',
         templateUrl: 'views/templates/dashboardStats.html'
+      })
+      .state('about', {
+        url: '/about',
+        controller: 'AboutCtrl',
+        templateUrl: 'views/about.html'
       });
       $urlRouterProvider.otherwise('/');
   }]);
