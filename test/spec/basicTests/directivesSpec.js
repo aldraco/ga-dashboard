@@ -23,28 +23,10 @@ describe('custom directives: admin panel', function() {
 			var links = elem.find('ul li a');
 
 			expect(elem.html()).toContain("Summary");
-			//expect(elem.html()).toContain("User Statistics");
+			expect(elem.html()).toContain("User Statistics");
 		}));
 
 	});
-
-	describe('By Country:', function() {
-		beforeEach(inject(function($rootScope, $compile) {
-			elem = angular.element('<by-country-chart></by-country-chart>');
-			scope = $rootScope;
-			$compile(elem)(scope);
-			scope.$digest();
-		}));
-
-
-		it('replaces the element with the correct content', inject(function($compile, $rootScope) {
-				expect(elem.attr('class')).toContain('chart-pie');
-				expect(elem.attr('data').length).toBeGreaterThan(1);
-		}));
-
-	});
-
-
 
 
 
