@@ -26,7 +26,7 @@
     <script src="util/humane.min.js"></script>
 
     <!-- Add your site or application content here -->
-    <div class="header">
+    <!--<div class="header">
       <div class="navbar navbar-default" role="navigation">
         <div class="container">
           <div class="navbar-header">
@@ -42,7 +42,7 @@
 
           <div class="collapse navbar-collapse" id="js-navbar-collapse" ng-controller="NavigationController">
 
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav nav-stacked">
               <li class="active"><a ui-sref="home">Home</a></li>
               <li><a ui-sref="dashboard.summary">Dashboard</a></li>
               <li><a ui-sref="about">About</a></li>
@@ -50,17 +50,41 @@
           </div>
         </div>
       </div>
+    </div>-->
+    <div class="container">
+    <div class="header">
+      <div class="gad-menu-bar">
+      <div class="col-lg-2 col-md-2 nav nav-pills">
+      Dashboard
+      </div>
+      Name of Tab goes here
+      </div>
+
+    </div>
+    <div class="">
+
+    <div class="navbar navbar-inverse col-lg-2 col-md-2" ng-controller='MainCtrl'>
+      <ul class='nav nav-stacked'>
+        <li><h3><a ui-sref="dashboard.summary">Summary</a></h3></li>
+        <li><h3><a ui-sref="dashboard.userStats">User Statistics</a></h3></li>
+        <li><h5><a ui-sref="dashboard.userStats">By Country</a></h5></li>
+        <li><h5><a ui-sref="dashboard.userStats">Over Time</a></h5></li>
+        <li><h5><a ui-sref="dashboard.userStats">User Growth</a></h5></li>
+        <li><h3><a ui-sref="about">About</a></h3></li>
+      </ul>
     </div>
 
     <div class="container">
-    <div ui-view=""></div>
+      <div ui-view=""></div>
     </div>
 
     <div class="footer">
       <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Zyring team</p>
+        <p><span class="glyphicon glyphicon-sunglasses"></span> by <a href="http://github.com/aldraco">aldraco</a></p>
       </div>
     </div>
+    </div>
+    </div><!-- container div -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>

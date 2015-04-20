@@ -19,11 +19,6 @@ angular
   ])
   .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
-      .state('home', {
-        url: '/',
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
       .state('dashboard', {
         url: '/dashboard',
         abstract: true,

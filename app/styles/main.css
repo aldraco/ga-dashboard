@@ -1,0 +1,9 @@
+.gad-menu-bar {
+	height: 30px;
+	padding-left: 0;
+	background-color: #001;
+}
+
+.navbar {
+	border-radius: 0;
+}
