@@ -15,12 +15,13 @@ angular.module('EventsDashboard')
       'Karma'
     ];
   })
-  .controller('NavigationController', function($rootScope) {
-  	$rootScope.activeTab = 'home';
+  .controller('NavigationController', ['$scope', function($scope) {
+  	$scope.activeTab = 'home';
 
-    $rootScope.changeTab = function(newTab) {
+    $scope.changeTab = function(newTab) {
         $state.go(newTab);
     };
+    console.log($scope.activeTab);
 
 
-  });
+  }]);

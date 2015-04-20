@@ -31,7 +31,7 @@ angular
         templateUrl: 'views/templates/dashboardSummary.html'
       })
       .state('dashboard.userStats', {
-        url: '/dashboard/user-statistics',
+        url: '/user-statistics',
         controller: 'DashboardController',
         templateUrl: 'views/templates/dashboardStats.html'
       })
