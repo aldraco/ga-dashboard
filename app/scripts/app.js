@@ -13,6 +13,7 @@ angular
     'ngAnimate',
     'ngResource',
     'ui.router',
+    'ui.bootstrap',
     'ngTouch',
     'ngLodash',
     'chart.js'

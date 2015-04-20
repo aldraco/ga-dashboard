@@ -1,2 +1,35 @@
-<canvas id="pie" class="chart chart-pie" data="byCountry.data"
-  labels="byCountry.labels"></canvas>
+<div>
+	<div class="col-md-6">
+		<canvas id="pie" class="chart chart-pie" data="byCountry.data"
+		  labels="byCountry.labels"></canvas>
+  </div>
+
+	<div class="col-md-6">
+		<canvas id="pie" class="chart chart-pie" data="byCountry.data"
+		  labels="byCountry.labels"></canvas>
+  </div>
+</div>	
+<div>
+  <div class="row" ng-controller='DatepickerCtrl'>
+  	<h2>Start Date</h2>
+      <div class="col-md-6">
+        <p class="input-group">
+          <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="startDate" is-open="opened" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+      </div>
+      <h2>End Date</h2>
+      <div class="col-md-6">
+        <p class="input-group">
+          <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="endDate" is-open="opened" min-date="startDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+      </div>
+    </div>
+</div>
+
+

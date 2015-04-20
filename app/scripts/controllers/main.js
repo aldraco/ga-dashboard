@@ -21,7 +21,7 @@ angular.module('EventsDashboard')
     $scope.changeTab = function(newTab) {
         $state.go(newTab);
     };
-    console.log($scope.activeTab);
+    
 
 
   }]);
