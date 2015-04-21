@@ -32,7 +32,13 @@
 	      </div>
 
 			</div>
+			<div>
+				<button class="btn btn-default" ng-click="changeDates(startDate, endDate)">Set range</button>
+			</div>
 			
+		</div>
+		<div>
+			<p>Showing data from <span ng-bind="{{'startDate | date'}}"></span> to {{endDate | date}}.</p>
 		</div>
 	</nav>
 	<ui-view></ui-view>

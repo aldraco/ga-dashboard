@@ -57,7 +57,7 @@ describe('Dashboard Controller: \n', function() {
 			// tests here
 			expect($scope.allEvents.length).toBe(2);
 			expect($scope.allEvents[0].eventCount).toBe(8);
-			expect(ctrl.filteredEvents.length).toBe(2);
+			expect($scope.filteredEvents.length).toBe(2);
 	
 	}));
 
@@ -69,6 +69,7 @@ describe('Dashboard Controller: \n', function() {
 			var ctrl = $controller('DashboardController', {$scope:$scope, EventsFactory:EventsFactory, lodash:lodash});
 
 			$httpBackend.flush();
+
 
 			expect(ctrl.countryCount).not.toBe(undefined);
 			expect(ctrl.countryCount).toEqual(jasmine.objectContaining({

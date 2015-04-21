@@ -34,7 +34,7 @@ angular
       .state('dashboard.userStats', {
         url: '/user-statistics',
         controller: 'DashboardController',
-        templateUrl: 'views/templates/dashboardStats.html'
+        templateUrl: 'views/templates/dashboardStats.html' 
       })
       .state('about', {
         url: '/about',

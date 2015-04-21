@@ -2,45 +2,64 @@
 
 
 angular.module('EventsDashboard')
-	.controller('DashboardController',['$scope', 'EventsProvider', 'lodash', function($scope, Events, _) {
+	.controller('DashboardController',['$scope', '$rootScope', 'EventsProvider', 'lodash', function($scope, $rootScope, Events, _) {
 		var self = this;
-		var countryCount;
-		var filteredEvents;
-
-		$scope.loadMessage = 'Loading events ...';
+		$scope.byCountry;
+		$scope.filteredEvents;
+		$scope.allEvents;
 		
-
+		
+		// initialization function
 		Events.then(function(events) {
 			$scope.allEvents = events;
-			self.filteredEvents = events;
-			$scope.loadMessage = '';
+			$scope.filteredEvents = _.sortBy(events, 'timestamp');
+			console.log("this many entries filtered: ",$scope.filteredEvents[0], $scope.filteredEvents[5821]);
+
+			// todo: index the events by date?
 
 			byCountry(events);
+
+			$scope.$watch('startDate', function(newValue, old) {
+				console.log("start date changed", (Date.parse(newValue)/1000));
+				var newFilter = timeFilter($scope.allEvents, {startDate: (Date.parse(newValue)/1000), endDate: (Date.parse($rootScope.endDate)/1000)});
+				$scope.filteredEvents = newFilter;
+				console.log(newFilter[0]);
+			});
+
+			$scope.$watch('endDate', function(newValue, old) {
+				console.log(newValue);
+			});
+
+			$scope.$watch('filteredEvents', function(newValue, oldValue) {
+				console.log("filtered events changed");
+				byCountry(newValue);
+			});
+
 		
 		});
 
-		$scope.testMessage = 'test';
 
-		$scope.$watch('startDate', function(newValue, oldValue) {
-			//alert("Start Date changed");
-		});
 
-		$scope.$watch('endDate', function(newValue, oldValue) {
-			//alert("End date changed");
-		});
-
-		function reset() {
-			self.filteredEvents = $scope.allEvents;
-		};
+		// Helper functions for calculating data
+		// These run on init but also can be called again when data changes
 
 		function byCountry(events) {
-			self.countryCount = _.countBy(events, 'country');
+			var countryCount = _.countBy(events, 'country');
 
 			$scope.byCountry = {
-				labels: Object.keys(self.countryCount),
-				data: _.values(self.countryCount)
+				labels: Object.keys(countryCount),
+				data: _.values(countryCount)
 			};
 		};
+
+		function timeFilter(events, range) {
+			console.log("this is the rnage that was passed in", range);
+			return _.filter(events, function(n) {
+				return ((n.timestamp >= range.startDate) && (n.timestamp <= range.endDate));
+			});
+		};
+
+		
 
 
 
