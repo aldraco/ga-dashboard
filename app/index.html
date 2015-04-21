@@ -27,27 +27,33 @@
 
     <!-- Add your site or application content here -->
     
-    <div class="container"><!--  container for the whole page -->
-      <div class="nav navbar navbar-inverse gad-menu-bar col-md-12">
-        <div class="logo col-md-3"><h3>Dashboard</h3></div>
-        <div id="pageTitle" class="col-md-9">Page Title</div>
-      </div>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button> 
+          <a class="navbar-brand" href="#">Brand</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-right">
+          <ul class="nav navbar-nav">
+            <li class=''><a ui-sref="home" class="active">Home</a></li>
+            <li class=''><a ui-sref="dashboard.summary">Dashboard</a></li>
+            <li class=''><a ui-sref="about">About</a></li>
 
-      <div id="sideBar">
-        <ul class="nav nav-pills nav-stacked">
-          <li class=""><h3><a ui-sref="dashboard.summary">Home</a></h3></li>
-          <li class=""><h3><a ui-sref="dashboard.userStats">Stats</a></h3></li>
-          <li class=""><h3><a ui-sref="about">About</a></h3></li>
-        </ul>
-      </div>
-
-      <div id="contentArea">
-        <div class="">
-          <ui-view></ui-view>
+          </ul>
         </div>
       </div>
+    </nav>
 
+    <div class="container dashboard-container">
+    <ui-view></ui-view>
     </div>
+
+
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -72,7 +78,7 @@
     <script src="bower_components/Chart.js/Chart.js"></script>
     <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -88,37 +94,8 @@
         <!-- endbuild -->
 
   <script>
-      // self executing function here
-      (function() {
-          // your page initialization code here
-          // the DOM will be available here
-          var notifyToaster = humane.create({ timeout: 10000, baseCls: 'humane-libnotify', clickToClose:true });
-          var socket = io('https://api.zyring.com');
-          var zyringUserID = 'aldrake';
-          socket.on('connect', function() {
-              // ask the server if we should show the toaster or not
-              socket.emit('isToasterVisible',{userID:zyringUserID});
+      // 
 
-              socket.on('toasterState', function (data) {
-                  if (data.toasterVisibility === true) {
-                      notifyToaster.log(data.msg);
-                  }
-              });
-
-          });
-
-          notifyToaster.el.onclick =  function() {
-              socket.emit('toasterClicked',
-                      {
-                          userID: zyringUserID,
-                          type: 'requestHelp',
-                          timestamp: Date()
-                      }
-              );
-          };
-
-
-      })();
   </script>
   </body>
 </html>
