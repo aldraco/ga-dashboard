@@ -26,41 +26,34 @@
     <script src="util/humane.min.js"></script>
 
     <!-- Add your site or application content here -->
-    <div class="header">
-      <div class="navbar navbar-default" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
+    
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button> 
+          <a class="navbar-brand" href="#">Brand</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-right">
+          <ul class="nav navbar-nav">
+            <li class=''><a ui-sref="home" class="active">Home</a></li>
+            <li class=''><a ui-sref="dashboard.summary">Dashboard</a></li>
+            <li class=''><a ui-sref="about">About</a></li>
 
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-
-          </div>
-
-          <div class="collapse navbar-collapse" id="js-navbar-collapse" ng-controller="NavigationController">
-
-            <ul class="nav navbar-nav">
-              <li class="active"><a ui-sref="home">Home</a></li>
-              <li><a ui-sref="dashboard.summary">Dashboard</a></li>
-              <li><a ui-sref="about">About</a></li>
-            </ul>
-          </div>
+          </ul>
         </div>
       </div>
+    </nav>
+
+    <div class="container dashboard-container">
+    <ui-view></ui-view>
     </div>
 
-    <div class="container">
-    <div ui-view=""></div>
-    </div>
 
-    <div class="footer">
-      <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Zyring team</p>
-      </div>
-    </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -85,6 +78,7 @@
     <script src="bower_components/Chart.js/Chart.js"></script>
     <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -93,44 +87,15 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/dashboard.js"></script>
+        <script src="scripts/controllers/datepicker.js"></script>
         <script src="scripts/services/events.js"></script>
-        <script src="scripts/directives/admin-navpanel.js"></script>
-        
+       
 
         <!-- endbuild -->
 
   <script>
-      // self executing function here
-      (function() {
-          // your page initialization code here
-          // the DOM will be available here
-          var notifyToaster = humane.create({ timeout: 10000, baseCls: 'humane-libnotify', clickToClose:true });
-          var socket = io('https://api.zyring.com');
-          var zyringUserID = 'aldrake';
-          socket.on('connect', function() {
-              // ask the server if we should show the toaster or not
-              socket.emit('isToasterVisible',{userID:zyringUserID});
+      // 
 
-              socket.on('toasterState', function (data) {
-                  if (data.toasterVisibility === true) {
-                      notifyToaster.log(data.msg);
-                  }
-              });
-
-          });
-
-          notifyToaster.el.onclick =  function() {
-              socket.emit('toasterClicked',
-                      {
-                          userID: zyringUserID,
-                          type: 'requestHelp',
-                          timestamp: Date()
-                      }
-              );
-          };
-
-
-      })();
   </script>
   </body>
 </html>

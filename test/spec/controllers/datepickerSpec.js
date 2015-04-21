@@ -1,0 +1,30 @@
+// datepicker controller test
+'use strict';
+
+beforeEach(module('EventsDashboard'));
+
+describe("Datepicker Controller:\n", function() {
+
+	var $scope;
+
+	beforeEach(inject(function($rootScope, $controller) {
+		$scope = $rootScope.$new();
+		var DatePickerCtrl = $controller('DatepickerCtrl', {$scope:$scope});
+	}));
+
+	it('should initialize a controller with two dates in the scope', function() {			
+
+		expect($scope.startDate).not.toBe(undefined);
+		expect($scope.startDate).toEqual(jasmine.any(Date));
+		expect($scope.endDate).toEqual(jasmine.any(Date));
+	});
+
+	it('should set the maximum date as today', function() {
+		expect($scope.maxDate).toEqual(jasmine.any(Date));
+	});
+
+	it('should correctly handle two separate instances of the directive', function() {
+		expect($scope.open1).not.toEqual($scope.open2);
+	});
+
+});

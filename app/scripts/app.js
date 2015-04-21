@@ -13,17 +13,13 @@ angular
     'ngAnimate',
     'ngResource',
     'ui.router',
+    'ui.bootstrap',
     'ngTouch',
     'ngLodash',
     'chart.js'
   ])
   .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
-      .state('home', {
-        url: '/',
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
       .state('dashboard', {
         url: '/dashboard',
         abstract: true,
@@ -36,7 +32,7 @@ angular
         templateUrl: 'views/templates/dashboardSummary.html'
       })
       .state('dashboard.userStats', {
-        url: '/dashboard/user-statistics',
+        url: '/user-statistics',
         controller: 'DashboardController',
         templateUrl: 'views/templates/dashboardStats.html'
       })
