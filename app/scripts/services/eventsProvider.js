@@ -1,7 +1,7 @@
-angular.module('EventsDashboard').
+angular.module('EventsDashboard')
 	.factory('EventsProvider', ['$q', 'EventsFactory', function($q, EventsFactory) {
 		var deferred = $q.defer();
-		EventsFactory.get({}, function(events) {
+		EventsFactory.query({}, function(events) {
 			deferred.resolve(events);
 				}, 
 			function(err) {
