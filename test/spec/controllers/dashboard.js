@@ -42,21 +42,22 @@ describe('Dashboard Controller: \n', function() {
 	}));
 
 	// pass dependencies to make a controller
-	it('should initialize controller with two items', 
+	it('should initialize controller with both all events', 
 		inject(function($rootScope, $controller, EventsFactory) {
 		
 			var $scope = $rootScope.$new();
 
 			// make the controller
-			$controller('DashboardController', {$scope:$scope, EventsFactory:EventsFactory});
+			var ctrl = $controller('DashboardController', {$scope:$scope, EventsFactory:EventsFactory});
 
 			// 'run' the back end function
 			$httpBackend.flush();
 
 
 			// tests here
-			expect($scope.events.length).toBe(2);
-			expect($scope.events[0].eventCount).toBe(8);
+			expect($scope.allEvents.length).toBe(2);
+			expect($scope.allEvents[0].eventCount).toBe(8);
+			expect(ctrl.filteredEvents.length).toBe(2);
 	
 	}));
 

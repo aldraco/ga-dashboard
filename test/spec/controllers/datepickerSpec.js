@@ -23,8 +23,6 @@ describe("Datepicker Controller:\n", function() {
 		expect($scope.maxDate).toEqual(jasmine.any(Date));
 	});
 
-	it('should correctly handle two separate instances of the directive', function() {
-		expect($scope.open1).not.toEqual($scope.open2);
-	});
+	// TODO mock out choosing a date, and check that the two dates are not the same.
 
 });

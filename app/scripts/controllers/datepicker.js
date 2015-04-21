@@ -9,7 +9,7 @@ angular.module('EventsDashboard')
 
 
   $scope.clear = function () {
-    $scope.dt = null;
+    $scope.startDate = null;
   };
 
   // Disable weekend selection
@@ -22,11 +22,11 @@ angular.module('EventsDashboard')
   };
   $scope.toggleMin();
 
-  $scope.open = function($event) {
+  $scope.open = function($event, opened) {
     $event.preventDefault();
     $event.stopPropagation();
-
-    $scope.opened = true;
+    console.log(opened);
+    $scope[opened] = true;
   };
 
   $scope.dateOptions = {
@@ -34,6 +34,5 @@ angular.module('EventsDashboard')
     startingDay: 1
   };
 
-  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-  $scope.format = $scope.formats[0];
+  $scope.format = 'dd-MMMM-yyyy';
 });

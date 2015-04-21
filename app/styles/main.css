@@ -1,3 +1,7 @@
 .dashboard-container {
 	margin-top: 50px;
 }
+
+.dash-data-container {
+	float: right;
+}
