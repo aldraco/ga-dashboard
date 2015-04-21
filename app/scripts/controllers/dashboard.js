@@ -15,23 +15,31 @@ angular.module('EventsDashboard')
 			self.filteredEvents = events;
 			$scope.loadMessage = '';
 
-			self.countryCount = _.countBy(events, 'country');
-
-			$scope.byCountry = {
-				labels: Object.keys(self.countryCount),
-				data: _.values(self.countryCount)
-			};
+			byCountry(events);
 		
 		});
 
 		$scope.testMessage = 'test';
 
 		$scope.$watch('startDate', function(newValue, oldValue) {
-			$scope.testMessage += "a";
+			//alert("Start Date changed");
+		});
+
+		$scope.$watch('endDate', function(newValue, oldValue) {
+			//alert("End date changed");
 		});
 
 		function reset() {
 			self.filteredEvents = $scope.allEvents;
+		};
+
+		function byCountry(events) {
+			self.countryCount = _.countBy(events, 'country');
+
+			$scope.byCountry = {
+				labels: Object.keys(self.countryCount),
+				data: _.values(self.countryCount)
+			};
 		};
 
 
