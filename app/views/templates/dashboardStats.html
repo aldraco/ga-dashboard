@@ -1,8 +1,4 @@
 <div>
-	<div class="col-md-6">
-		<canvas id="pie" class="chart chart-pie" data="byCountry.data"
-		  labels="byCountry.labels"></canvas>
-  </div>
 
 	<div class="col-md-6">
 		<canvas id="pie" class="chart chart-pie" data="byCountry.data"
@@ -14,18 +10,18 @@
   	<h2>Start Date</h2>
       <div class="col-md-6">
         <p class="input-group">
-          <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="startDate" is-open="opened" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+          <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="startDate" is-open="startopen" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
           <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            <button type="button" class="btn btn-default" ng-click="open($event, 'startopen')"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
         </p>
       </div>
       <h2>End Date</h2>
       <div class="col-md-6">
         <p class="input-group">
-          <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="endDate" is-open="opened" min-date="startDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+          <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="endDate" is-open="endopen" min-date="startDate" max-Date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
           <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            <button type="button" class="btn btn-default" ng-click="open($event, 'endopen')"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
         </p>
       </div>
