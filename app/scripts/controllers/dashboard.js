@@ -13,25 +13,26 @@ angular.module('EventsDashboard')
 		Events.then(function(events) {
 			$scope.allEvents = events;
 			$scope.filteredEvents = _.sortBy(events, 'timestamp');
-			console.log("this many entries filtered: ",$scope.filteredEvents[0], $scope.filteredEvents[5821]);
+			
 
 			// todo: index the events by date?
 
 			byCountry(events);
 
 			$scope.$watch('startDate', function(newValue, old) {
-				console.log("start date changed", (Date.parse(newValue)/1000));
-				var newFilter = timeFilter($scope.allEvents, {startDate: (Date.parse(newValue)/1000), endDate: (Date.parse($rootScope.endDate)/1000)});
-				$scope.filteredEvents = newFilter;
-				console.log(newFilter[0]);
+				var newStart = timeFilter($scope.allEvents, {startDate: (Date.parse(newValue)/1000), endDate: (Date.parse($rootScope.endDate)/1000)});
+				$scope.filteredEvents = newStart;
 			});
 
 			$scope.$watch('endDate', function(newValue, old) {
-				console.log(newValue);
+				var newEnd = timeFilter($scope.allEvents, {startDate: (Date.parse($rootScope.startDate)/1000), endDate: (Date.parse(newValue)/1000)});
+				console.log("end date");
+				$scope.filteredEvents = newEnd;
 			});
 
+			// when the date range filter changes, run the functions to get the new data again
 			$scope.$watch('filteredEvents', function(newValue, oldValue) {
-				console.log("filtered events changed");
+				console.log(newValue.length);
 				byCountry(newValue);
 			});
 
@@ -53,7 +54,6 @@ angular.module('EventsDashboard')
 		};
 
 		function timeFilter(events, range) {
-			console.log("this is the rnage that was passed in", range);
 			return _.filter(events, function(n) {
 				return ((n.timestamp >= range.startDate) && (n.timestamp <= range.endDate));
 			});
