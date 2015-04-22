@@ -1,8 +1,10 @@
 angular.module('EventsDashboard')
 .controller('DatepickerCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+  $rootScope.range = {};
+
   $scope.today = function() {
-    $rootScope.endDate = new Date();
-    $rootScope.startDate = new Date();
+    $rootScope.range.endDate = new Date();
+    $rootScope.range.startDate = new Date();
     $scope.maxDate = new Date();
   };
   $scope.today();
@@ -12,7 +14,7 @@ angular.module('EventsDashboard')
 
 
   $scope.clear = function () {
-    $rootScope.startDate = null;
+    $rootScope.range.startDate = null;
   };
 
   // Disable weekend selection

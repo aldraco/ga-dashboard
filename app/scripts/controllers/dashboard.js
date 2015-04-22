@@ -19,13 +19,13 @@ angular.module('EventsDashboard')
 
 			byCountry(events);
 
-			$scope.$watch('startDate', function(newValue, old) {
-				var newStart = timeFilter($scope.allEvents, {startDate: (Date.parse(newValue)/1000), endDate: (Date.parse($rootScope.endDate)/1000)});
+			$scope.$watch('range.startDate', function(newValue, old) {
+				var newStart = timeFilter($scope.allEvents, {startDate: (Date.parse(newValue)/1000), endDate: (Date.parse($rootScope.range.endDate)/1000)});
 				$scope.filteredEvents = newStart;
 			});
 
-			$scope.$watch('endDate', function(newValue, old) {
-				var newEnd = timeFilter($scope.allEvents, {startDate: (Date.parse($rootScope.startDate)/1000), endDate: (Date.parse(newValue)/1000)});
+			$scope.$watch('range.endDate', function(newValue, old) {
+				var newEnd = timeFilter($scope.allEvents, {startDate: (Date.parse($rootScope.range.startDate)/1000), endDate: (Date.parse(newValue)/1000)});
 				console.log("end date");
 				$scope.filteredEvents = newEnd;
 			});

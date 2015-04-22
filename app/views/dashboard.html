@@ -14,7 +14,7 @@
 			<div class="">
 		      <div class="col-md-2">
 	        <p class="input-group">
-	          <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="startDate" is-open="startopen" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+	          <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="range.startDate" is-open="startopen" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
 	          <span class="input-group-btn">
 	            <button type="button" class="btn btn-default" ng-click="open($event, 'startopen')"><i class="glyphicon glyphicon-calendar"></i></button>
 	          </span>
@@ -24,7 +24,7 @@
 			<div class="">
 		      <div class="col-md-2">
 	        <p class="input-group">
-	          <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="endDate" is-open="endopen" min-date="startDate" max-Date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+	          <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="range.endDate" is-open="endopen" min-date="startDate" max-Date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
 	          <span class="input-group-btn">
 	            <button type="button" class="btn btn-default" ng-click="open($event, 'endopen')"><i class="glyphicon glyphicon-calendar"></i></button>
 	          </span>
@@ -38,7 +38,7 @@
 			
 		</div>
 		<div>
-			<p>Showing data from <span ng-bind="{{'startDate | date'}}"></span> to {{endDate | date}}.</p>
+			<p>Showing data from <span ng-bind="{{'range.startDate | date'}}"></span> to {{range.endDate | date}}.</p>
 		</div>
 	</nav>
 	<ui-view></ui-view>
