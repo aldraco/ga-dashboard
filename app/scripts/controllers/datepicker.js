@@ -5,7 +5,6 @@ angular.module('EventsDashboard')
     $rootScope.endDate = new Date();
     $rootScope.startDate = new Date();
     $scope.maxDate = new Date();
-    console.log($rootScope.endDate, $rootScope.startDate);
   };
   $scope.today();
 

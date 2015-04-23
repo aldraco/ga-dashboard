@@ -17,31 +17,19 @@ angular.module('EventsDashboard')
 			// todo: index the events by date?
 
 			byCountry(events);
-      divideByWeek($scope.filteredEvents);
+      divideByWeek(events);
 
-			/*$scope.$watch('startDate', function(newValue, old) {
-				//console.log('start', newValue);
-        var newStart = timeFilter($scope.allEvents, {startDate: (Date.parse(newValue)/1000), endDate: (Date.parse($rootScope.endDate)/1000)});
-				$scope.filteredEvents = newStart;
-			});
-
-			$scope.$watch('endDate', function(newValue, old) {
-				console.log('end', newValue);
-        var newEnd = timeFilter($scope.allEvents, {startDate: (Date.parse($rootScope.startDate)/1000), endDate: (Date.parse(newValue)/1000)});
-				$scope.filteredEvents = newEnd;
-			});*/
-
-			// when the date range filter changes, run the functions to get the new data again
-			$scope.$watch('filteredEvents', function(newValue, oldValue) {
-				console.log('filtered', newValue.length);
-        byCountry(newValue);
-        divideByWeek($scope.filteredEvents);
-			});
-
+      
+      // watch the dates for changes
       $scope.$watchGroup(['startDate', 'endDate'], function(newDates, oldDates, scope) {
-        console.log("Group watcher", newDates);
         var newValue = timeFilter($scope.allEvents, {startDate: newDates[0], endDate: newDates[1]});
         $scope.filteredEvents = newValue;
+      });
+
+      // when the date range filter changes, run the functions to get the new data again
+      $scope.$watch('filteredEvents', function(newValue, oldValue) {
+        byCountry(newValue);
+        divideByWeek($scope.filteredEvents);
       });
 
 		
@@ -62,7 +50,6 @@ angular.module('EventsDashboard')
 		};
 
 		function timeFilter(events, range) {
-			console.log(range);
       return _.filter(events, function(n) {
 				return ((n.timestamp >= (range.startDate/1000)) && (n.timestamp <= (range.endDate/1000)));
 			});
@@ -78,7 +65,6 @@ angular.module('EventsDashboard')
         if (i === events.length-1) {
           bucket.push(events[i]);
           eventsByWeek.push(bucket);
-          console.log("Weeks:", eventsByWeek.length);
           return eventsByWeek;
         }
         bucket.push(events[i]);
@@ -96,13 +82,6 @@ angular.module('EventsDashboard')
       }
     };
 
-    // issue: case when the current day is the same as nextWeek, pushes a new bucket for every one fo the days
-
-		// when should it push a new bucket?
-    /*
-    better way would be to keep a counter, increment when the day changes, and when it's %7, push a new bucket.
-
-    */
 
 
 
