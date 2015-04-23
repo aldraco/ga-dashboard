@@ -7,6 +7,7 @@ angular.module('EventsDashboard')
 		$scope.byCountry;
 		$scope.filteredEvents;
 		$scope.allEvents;
+    $scope.series = ['Data by Week'];
 		
 		
 		// initialization function
@@ -56,18 +57,25 @@ angular.module('EventsDashboard')
 		};
 
     function divideByWeek(events) {
-      var bucket = [];
+      var bucket = 0;
       var eventsByWeek = [];
       var counter = 0;        // to keep track of the days
 
       for (var i = 0; i < events.length; i++) {
         // if we're at the end, finish
         if (i === events.length-1) {
-          bucket.push(events[i]);
+          bucket++;
           eventsByWeek.push(bucket);
-          return eventsByWeek;
+          console.log(eventsByWeek);
+          var container = [];
+          container.push(eventsByWeek);
+
+          return $scope.byWeek = {
+            data: container,
+            labels: makeLabels(eventsByWeek.length)
+          };
         }
-        bucket.push(events[i]);
+        bucket++;
         if (new Date(events[i].timestamp*1000).getDay() < new Date(events[i+1].timestamp*1000).getDay()) {//the next day is different, increment the counter
           counter++;
         }
@@ -75,12 +83,21 @@ angular.module('EventsDashboard')
         if (counter === 7) { //if the week is going to change over, push the bucket
           eventsByWeek.push(bucket);
           counter = 0;
-          bucket =[];
+          bucket = 0;
         }
 
 
       }
     };
+
+    function makeLabels(num) {
+      var labels = [];
+      for (var i = 0; i < num; i++) {
+        labels.push("Week "+i);
+      }
+      console.log("Made this many labels: ", labels.length);
+      return labels;
+    }
 
 
 
