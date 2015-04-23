@@ -1,11 +1,11 @@
 angular.module('EventsDashboard')
 .controller('DatepickerCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
-  $rootScope.range = {};
 
   $scope.today = function() {
-    $rootScope.range.endDate = new Date();
-    $rootScope.range.startDate = new Date();
+    $rootScope.endDate = new Date();
+    $rootScope.startDate = new Date();
     $scope.maxDate = new Date();
+    console.log($rootScope.endDate, $rootScope.startDate);
   };
   $scope.today();
 
@@ -14,7 +14,7 @@ angular.module('EventsDashboard')
 
 
   $scope.clear = function () {
-    $rootScope.range.startDate = null;
+    $rootScope.startDate = null;
   };
 
   // Disable weekend selection
@@ -22,10 +22,10 @@ angular.module('EventsDashboard')
     return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
   };
 
-  $scope.toggleMin = function() {
+  /*$scope.toggleMin = function() {
     $scope.minDate = $scope.minDate ? null : new Date();
   };
-  $scope.toggleMin();
+  $scope.toggleMin();*/
 
   $scope.open = function($event, opened) {
     $event.preventDefault();
@@ -43,3 +43,5 @@ angular.module('EventsDashboard')
 
 
 }]);
+
+// chosing a new end date resets the start date. Can't choose one before the other. 
