@@ -23,6 +23,5 @@ describe("Datepicker Controller:\n", function() {
 		expect($scope.maxDate).toEqual(jasmine.any(Date));
 	});
 
-	// TODO mock out choosing a date, and check that the two dates are not the same.
 
 });

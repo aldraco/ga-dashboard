@@ -66,7 +66,6 @@ angular.module('EventsDashboard')
         if (i === events.length-1) {
           bucket++;
           eventsByWeek.push(bucket);
-          console.log(eventsByWeek);
           var container = [];
           container.push(eventsByWeek);
 
@@ -95,7 +94,6 @@ angular.module('EventsDashboard')
       for (var i = 0; i < num; i++) {
         labels.push("Week "+i);
       }
-      console.log("Made this many labels: ", labels.length);
       return labels;
     }
 
