@@ -4,10 +4,10 @@
 angular.module('EventsDashboard')
 	.controller('DashboardController',['$scope', '$rootScope', 'EventsProvider', 'lodash', function($scope, $rootScope, Events, _) {
 		var self = this;
-		$scope.byCountry;
+		
 		$scope.filteredEvents;
 		$scope.allEvents;
-    $scope.series = ['Data by Week'];
+    console.log("Do I have filtered events at all?", $scope.filteredEvents);
 		
 		
 		// initialization function
@@ -17,8 +17,9 @@ angular.module('EventsDashboard')
 			
 			// todo: index the events by date?
 
-			byCountry(events);
-      divideByWeek(events);
+			//byCountry(events);
+      //divideByWeek(events);
+      //createCountryMap(events);
 
       
       // watch the dates for changes
@@ -28,10 +29,10 @@ angular.module('EventsDashboard')
       });
 
       // when the date range filter changes, run the functions to get the new data again
-      $scope.$watch('filteredEvents', function(newValue, oldValue) {
+      /*$scope.$watch('filteredEvents', function(newValue, oldValue) {
         byCountry(newValue);
         divideByWeek($scope.filteredEvents);
-      });
+      });*/
 
 		
 		});
@@ -41,14 +42,14 @@ angular.module('EventsDashboard')
 		// Helper functions for calculating data
 		// These run on init but also can be called again when data changes
 
-		function byCountry(events) {
+		/*function byCountry(events) {
 			var countryCount = _.countBy(events, 'country');
 
 			$scope.byCountry = {
 				labels: Object.keys(countryCount),
 				data: _.values(countryCount)
 			};
-		};
+		};*/
 
 		function timeFilter(events, range) {
       return _.filter(events, function(n) {
@@ -56,7 +57,7 @@ angular.module('EventsDashboard')
 			});
 		};
 
-    function divideByWeek(events) {
+    /*function divideByWeek(events) {
       var bucket = 0;
       var eventsByWeek = [];
       var counter = 0;        // to keep track of the days
@@ -87,17 +88,24 @@ angular.module('EventsDashboard')
 
 
       }
-    };
+    };*/
 
-    function makeLabels(num) {
+    /*function makeLabels(num) {
       var labels = [];
       for (var i = 0; i < num; i++) {
         labels.push("Week "+i);
       }
       return labels;
-    }
+    }*/
 
-
+    /*function createCountryMap() {
+      var map = new Datamap({
+        element: document.getElementById('countryMap'),
+        fills: {
+          defaultFill: 'rgba(23,48,210,0.9)'
+        }
+      });
+    }*/
 
 
 
