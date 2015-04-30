@@ -8,7 +8,6 @@ angular.module('EventsDashboard')
     $scope.series = ['Data by Week'];
 
     $scope.$watch('filteredEvents', function(newValue, oldValue) {
-      //byCountry(newValue);
       if ($scope.filteredEvents) {
         divideByWeek($scope.filteredEvents);
       }
