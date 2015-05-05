@@ -43,10 +43,10 @@ angular.module('EventsDashboard')
         projection: 'mercator',
         scope: 'world',
         responsive: true,
-        /*fills: {
+        fills: {
           defaultFill: 'rgba(23,48,210,0.9)',
           testFill: 'rgba(0, 244, 244, 1)'
-        },*/
+        },
         data: $scope.mapColors
       });
     }
@@ -65,7 +65,10 @@ angular.module('EventsDashboard')
 
       mapColors = _.mapValues(mapColors, function(num) {
         var alpha = (Math.round(num*factor*100))/100;
-        return colors(alpha);
+        return  {
+          'fillKey': colors(alpha),
+          'numberOfVisits': num
+          };
       });
       console.log("map Colors", mapColors);
 
