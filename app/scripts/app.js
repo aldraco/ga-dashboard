@@ -27,13 +27,13 @@ angular
         controller: 'DashboardController'
       })
       .state('dashboard.summary', {
-        url: '',
-        controller: 'DashboardController',
+        url: '/summary',
+        controller: '',
         templateUrl: 'views/templates/dashboardSummary.html'
       })
       .state('dashboard.userStats', {
         url: '/user-statistics',
-        controller: 'DashboardController',
+        controller: '',
         templateUrl: 'views/templates/dashboardStats.html' 
       })
       .state('about', {

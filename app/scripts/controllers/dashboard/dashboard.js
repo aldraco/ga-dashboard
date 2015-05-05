@@ -2,12 +2,26 @@
 
 
 angular.module('EventsDashboard')
-	.controller('DashboardController',['$scope', '$rootScope', 'EventsProvider', 'lodash', function($scope, $rootScope, Events, _) {
+	.controller('DashboardController',['$scope', '$rootScope', 'EventsProvider', 'CountryCodes', 'lodash', function($scope, $rootScope, Events, Codes, _) {
 			
 		// initialization function
 		Events.then(function(events) {
-			$scope.allEvents = events;
-			$scope.filteredEvents = _.sortBy(events, 'timestamp');
+			// map the three-letter country codes onto the two
+
+        var threeCodes = _.map(events, function(event) {
+          var o = {};
+
+          o = _.extend(event, {country: Codes[event.country]});
+          return o;
+
+        });
+        console.log("threecodes", threeCodes);
+
+      // change the value of event.country to the value at code[event.country]
+
+
+      $scope.allEvents = events;
+      $scope.filteredEvents = _.sortBy(events, 'timestamp');
 
       
       // watch the dates for changes
@@ -15,6 +29,10 @@ angular.module('EventsDashboard')
         var newValue = timeFilter($scope.allEvents, {startDate: newDates[0], endDate: newDates[1]});
         $scope.filteredEvents = newValue;
       });
+
+     
+
+
 		
 		});
 

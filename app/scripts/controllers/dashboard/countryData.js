@@ -9,6 +9,7 @@ angular.module('EventsDashboard')
     $scope.$watch('filteredEvents', function(newValue, oldValue) {
       byCountry(newValue);
       getMapColors($scope.countryCount);
+      //countryMap.updateChoropleth({$scope.mapColors});
     });
 
     function byCountry(events) {
@@ -25,23 +26,27 @@ angular.module('EventsDashboard')
       var max = _.sortBy(count, function(m) {
         return m;
       });
+      var colors = d3.scale.category10();
+
+      //console.log(colors);
+
       var factor = (1/(max[max.length-1]));
-      console.log("factor is",factor);
-      //create an object with thsi format: 
-      // USA: {fillKey: rgba(23, 28, 210, value*factor)}
+
       var mapColors = $scope.countryCount;
+
       mapColors = _.mapValues(mapColors, function(num) {
         var alpha = (Math.round(num*factor*100))/100;
-        return 'rgba(255, 255, 255, '+ alpha +')';
+        return colors(alpha);
       });
       console.log("map Colors", mapColors);
-      return mapColors;
+
+      return $scope.mapColors = mapColors;
     }
 
     
 
     function createCountryMap() {
-      var colors = getMapColors($scope.countryCount);
+      getMapColors($scope.countryCount);
 
       var countryMap = new Datamap({
         element: document.getElementById('countryMap'),
@@ -52,7 +57,7 @@ angular.module('EventsDashboard')
           defaultFill: 'rgba(23,48,210,0.9)',
           testFill: 'rgba(0, 244, 244, 1)'
         },*/
-        data: colors
+        data: $scope.mapColors
       });
     }
   }]);
