@@ -8,7 +8,7 @@ angular.module('EventsDashboard')
 
     $scope.$watch('filteredEvents', function(newValue, oldValue) {
       byCountry(newValue);
-      createCountryMap();
+      getMapColors($scope.countryCount);
     });
 
     function byCountry(events) {
@@ -32,7 +32,7 @@ angular.module('EventsDashboard')
       var mapColors = $scope.countryCount;
       mapColors = _.mapValues(mapColors, function(num) {
         var alpha = (Math.round(num*factor*100))/100;
-        return 'rgba(23, 48, 210, '+ alpha +')';
+        return 'rgba(255, 255, 255, '+ alpha +')';
       });
       console.log("map Colors", mapColors);
       return mapColors;
@@ -48,10 +48,10 @@ angular.module('EventsDashboard')
         projection: 'mercator',
         scope: 'world',
         responsive: true,
-        fills: {
+        /*fills: {
           defaultFill: 'rgba(23,48,210,0.9)',
           testFill: 'rgba(0, 244, 244, 1)'
-        },
+        },*/
         data: colors
       });
     }

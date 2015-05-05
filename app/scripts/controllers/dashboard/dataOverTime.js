@@ -3,13 +3,16 @@ angular.module('EventsDashboard')
     // inherits the Events from parent controller
     // Also inherits the start and end dates from the date picker.
 
-    console.log("do I inherit filtered events?", $scope.filteredEvents);
-    $scope.byWeek;
+
     $scope.series = ['Data by Week'];
 
     $scope.$watch('filteredEvents', function(newValue, oldValue) {
       if ($scope.filteredEvents) {
-        divideByWeek($scope.filteredEvents);
+            $scope.byWeek = {
+              data: divideByWeek($scope.filteredEvents),
+              labels: makeLabels($scope.weeks)
+            };
+            console.log($scope.byWeek);
       }
       
     });
@@ -29,11 +32,9 @@ angular.module('EventsDashboard')
           eventsByWeek.push(bucket);
           var container = [];
           container.push(eventsByWeek);
-
-          return $scope.byWeek = {
-            data: container,
-            labels: makeLabels(eventsByWeek.length)
-          };
+          $scope.weeks = eventsByWeek.length;
+          console.log("weeks", $scope.weeks);
+          return container;
         }
         bucket++;
         if (new Date(events[i].timestamp*1000).getDay() < new Date(events[i+1].timestamp*1000).getDay()) {//the next day is different, increment the counter

@@ -9,3 +9,9 @@
 p.timepicker {
   margin: 10px 0;
 }
+
+.map {
+  height: 500px;
+  width: 750px;
+  margin: 0 auto;
+}

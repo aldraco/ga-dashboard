@@ -3,7 +3,7 @@ angular.module('EventsDashboard')
 
   $scope.today = function() {
     $rootScope.endDate = new Date();
-    $rootScope.startDate = new Date();
+    $rootScope.startDate = new Date(2015, 0, 1);
     $scope.maxDate = new Date();
   };
   $scope.today();
