@@ -3,23 +3,52 @@ angular.module('EventsDashboard')
     // inherits the date picker dates
     // also inherits the events, filtered
 
-    byCountry($scope.filteredEvents);
-    createCountryMap();
+    //countByCountry($scope.filteredEvents);
+    
 
     $scope.$watch('filteredEvents', function(newValue, oldValue) {
-      byCountry(newValue);
-      getMapColors($scope.countryCount);
+      if ($scope.countryCount) {
+        countByCountry(newValue);
+      }
+      
+      
       //countryMap.updateChoropleth({$scope.mapColors});
     });
 
-    function byCountry(events) {
-      $scope.countryCount = _.countBy(events, 'country');
-
+    function countByCountry(events) {
       $scope.byCountry = {
         labels: Object.keys($scope.countryCount),
         data: _.values($scope.countryCount)
       };
       
+    }
+
+
+
+  
+  }])
+.controller('ChoroplethMapCtrl', ['$scope', 'lodash', function($scope, _) {
+    createCountryMap();
+
+    $scope.$watch('filteredEvents', function(newValue, oldValue) {
+      getMapColors($scope.countryCount);
+    });
+
+
+    function createCountryMap() {
+      getMapColors($scope.countryCount);
+
+      var countryMap = new Datamap({
+        element: document.getElementById('countryMap'),
+        projection: 'mercator',
+        scope: 'world',
+        responsive: true,
+        /*fills: {
+          defaultFill: 'rgba(23,48,210,0.9)',
+          testFill: 'rgba(0, 244, 244, 1)'
+        },*/
+        data: $scope.mapColors
+      });
     }
 
     function getMapColors(count) {
@@ -42,22 +71,4 @@ angular.module('EventsDashboard')
 
       return $scope.mapColors = mapColors;
     }
-
-    
-
-    function createCountryMap() {
-      getMapColors($scope.countryCount);
-
-      var countryMap = new Datamap({
-        element: document.getElementById('countryMap'),
-        projection: 'mercator',
-        scope: 'world',
-        responsive: true,
-        /*fills: {
-          defaultFill: 'rgba(23,48,210,0.9)',
-          testFill: 'rgba(0, 244, 244, 1)'
-        },*/
-        data: $scope.mapColors
-      });
-    }
-  }]);
+}]);

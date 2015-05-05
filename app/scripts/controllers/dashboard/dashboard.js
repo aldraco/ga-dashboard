@@ -22,6 +22,7 @@ angular.module('EventsDashboard')
 
       $scope.allEvents = events;
       $scope.filteredEvents = _.sortBy(events, 'timestamp');
+      $scope.countryCount = _.countBy($scope.filteredEvents, 'country');
 
       
       // watch the dates for changes

@@ -1,19 +1,23 @@
 <span>{{testMessage}}</span>
-<div>
+<div >
 
 	<div class="col-md-6" ng-controller="CountryDataCtrl">
 		<canvas id="pie" class="chart chart-pie" data="byCountry.data" labels="byCountry.labels"></canvas>
   </div>
 
+  <div class="col-md-12 container-fluid">
+    <div id="countryMap" class="map" ng-controller='ChoroplethMapCtrl'></div>
+  </div>
+
+</div>	
+<div>
+  
+
   <div class="col-md-6" ng-controller="dataOverTimeCtrl">
     <canvas id="line" class="chart chart-line" data="byWeek.data" labels="byWeek.labels" legend="true" series="series" click="onClick"></canvas> 
   </div>
 
-  <div class="col-md-12 container-fluid">
-    <div ng-controller="CountryDataCtrl" id="countryMap" class="map"></div>
-  </div>
-
-</div>	
+</div>
 
 
 
