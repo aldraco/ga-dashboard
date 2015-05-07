@@ -24,16 +24,16 @@ angular
         url: '/dashboard',
         abstract: true,
         templateUrl: 'views/dashboard.html',
-        controller: 'DashboardController'
+        controller: ''
       })
       .state('dashboard.summary', {
         url: '/summary',
-        controller: '',
+        controller: 'DashboardController',
         templateUrl: 'views/templates/dashboardSummary.html'
       })
       .state('dashboard.userStats', {
         url: '/user-statistics',
-        controller: '',
+        controller: 'DashboardController',
         templateUrl: 'views/templates/dashboardStats.html' 
       })
       .state('about', {

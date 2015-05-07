@@ -12,7 +12,6 @@ angular.module('EventsDashboard')
               data: divideByWeek($scope.filteredEvents),
               labels: makeLabels($scope.weeks)
             };
-            console.log($scope.byWeek);
       }
       
     });

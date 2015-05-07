@@ -1,18 +1,11 @@
 angular.module('EventsDashboard')
   .controller('CountryDataCtrl', ['$scope', '$rootScope', 'lodash', function($scope, $rootScope, _) {
-    // inherits the date picker dates
-    // also inherits the events, filtered
-
-    //countByCountry($scope.filteredEvents);
-    
 
     $scope.$watch('filteredEvents', function(newValue, oldValue) {
+      console.log("filtered events change bubbled to countryData");
       if ($scope.countryCount) {
         countByCountry(newValue);
       }
-      
-      
-      
     });
 
     function countByCountry(events) {
@@ -38,16 +31,17 @@ angular.module('EventsDashboard')
     createColorFills();
 
     var countryMap = new Datamap({
-    element: document.getElementById('countryMap'),
-    projection: 'mercator',
-    scope: 'world',
-    responsive: true,
-    fills: fills,
-    data: $scope.mapData
-  });
+      element: document.getElementById('countryMap'),
+      projection: 'mercator',
+      scope: 'world',
+      responsive: true,
+      fills: fills,
+      data: $scope.mapData
+    });
     
 
     $scope.$watch('filteredEvents', function(newValue, oldValue) {
+      console.log("filtered events change bubbles to choropleth");
       getmapData();
       countryMap.updateChoropleth($scope.mapData);
       createColorFills();
@@ -75,7 +69,6 @@ angular.module('EventsDashboard')
           fills[value] = newColor;
       });
       fills.testFill = 'rgba(0, 244, 244, 1)';
-      console.log(fills);
     };
 
     
@@ -89,20 +82,13 @@ angular.module('EventsDashboard')
       });
 
       var factor = (10/(max[max.length-1]));
-
-
       var mapData = $scope.countryCount;
 
       mapData = _.mapValues(mapData, function(num) {
-        //var alpha = (Math.round(num*factor*100))/100;
-        //console.log(alpha);
-
         return  {
           'fillKey': num.toString(),
           };
       });
-
-      //console.log("map Data", mapData);
 
       return $scope.mapData = mapData;
     }
