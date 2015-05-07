@@ -15,7 +15,6 @@ angular.module('EventsDashboard')
           return o;
 
         });
-        console.log("threecodes", threeCodes);
 
       // change the value of event.country to the value at code[event.country]
 
@@ -27,6 +26,7 @@ angular.module('EventsDashboard')
       
       // watch the dates for changes
       $scope.$watchGroup(['startDate', 'endDate'], function(newDates, oldDates, scope) {
+        console.log("dates change");
         var newValue = timeFilter($scope.allEvents, {startDate: newDates[0], endDate: newDates[1]});
         $scope.filteredEvents = newValue;
       });

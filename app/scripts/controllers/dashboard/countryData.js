@@ -12,7 +12,7 @@ angular.module('EventsDashboard')
       }
       
       
-      //countryMap.updateChoropleth({$scope.mapColors});
+      
     });
 
     function countByCountry(events) {
@@ -28,50 +28,82 @@ angular.module('EventsDashboard')
   
   }])
 .controller('ChoroplethMapCtrl', ['$scope', 'lodash', function($scope, _) {
-    createCountryMap();
+    $scope.mapData;
+
+    var fills = {
+      defaultFill : 'rgba(210,210,210, 1)'
+    };
+
+
+    createColorFills();
+
+    var countryMap = new Datamap({
+    element: document.getElementById('countryMap'),
+    projection: 'mercator',
+    scope: 'world',
+    responsive: true,
+    fills: fills,
+    data: $scope.mapData
+  });
+    
 
     $scope.$watch('filteredEvents', function(newValue, oldValue) {
-      getMapColors($scope.countryCount);
+      getmapData();
+      countryMap.updateChoropleth($scope.mapData);
+      createColorFills();
     });
 
+    
 
-    function createCountryMap() {
-      getMapColors($scope.countryCount);
+    function createColorFills() {
+      // create a range and generate colors based on the number of visits
 
-      var countryMap = new Datamap({
-        element: document.getElementById('countryMap'),
-        projection: 'mercator',
-        scope: 'world',
-        responsive: true,
-        fills: {
-          defaultFill: 'rgba(23,48,210,0.9)',
-          testFill: 'rgba(0, 244, 244, 1)'
-        },
-        data: $scope.mapColors
+      var d3Color = d3.rgb('teal');
+
+      var count = $scope.countryCount;
+
+      var maxColor = _.sortBy(count, function(m) {
+        return m;
       });
-    }
+      var endRange = maxColor.length-1;
 
-    function getMapColors(count) {
+      var colorFactor = d3.scale.linear().domain([1, maxColor[endRange]]).range([1, 6]);
+
+
+      _.each(maxColor, function(value, key) {
+          var newColor = d3Color.brighter(colorFactor(value));
+          fills[value] = newColor;
+      });
+      fills.testFill = 'rgba(0, 244, 244, 1)';
+      console.log(fills);
+    };
+
+    
+    
+
+    function getmapData() {
+      var count = $scope.countryCount;
+
       var max = _.sortBy(count, function(m) {
         return m;
       });
-      var colors = d3.scale.category10();
 
-      //console.log(colors);
+      var factor = (10/(max[max.length-1]));
 
-      var factor = (1/(max[max.length-1]));
 
-      var mapColors = $scope.countryCount;
+      var mapData = $scope.countryCount;
 
-      mapColors = _.mapValues(mapColors, function(num) {
-        var alpha = (Math.round(num*factor*100))/100;
+      mapData = _.mapValues(mapData, function(num) {
+        //var alpha = (Math.round(num*factor*100))/100;
+        //console.log(alpha);
+
         return  {
-          'fillKey': colors(alpha),
-          'numberOfVisits': num
+          'fillKey': num.toString(),
           };
       });
-      console.log("map Colors", mapColors);
 
-      return $scope.mapColors = mapColors;
+      //console.log("map Data", mapData);
+
+      return $scope.mapData = mapData;
     }
 }]);
