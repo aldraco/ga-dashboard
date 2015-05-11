@@ -16,7 +16,8 @@ angular
     'ui.bootstrap',
     'ngTouch',
     'ngLodash',
-    'chart.js'
+    'chart.js',
+    'angular-jqcloud'
   ])
   .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
@@ -38,7 +39,6 @@ angular
       })
       .state('about', {
         url: '/about',
-        controller: 'AboutCtrl',
         templateUrl: 'views/about.html'
       });
       $urlRouterProvider.otherwise('/dashboard');
