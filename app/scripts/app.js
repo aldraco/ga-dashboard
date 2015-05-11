@@ -19,22 +19,19 @@ angular
     'chart.js',
     'angular-jqcloud'
   ])
-  .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
+  .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('dashboard', {
         url: '/dashboard',
         abstract: true,
-        templateUrl: 'views/dashboard.html',
-        controller: ''
+        templateUrl: 'views/dashboard.html'
       })
       .state('dashboard.userStats', {
         url: '/user-statistics',
-        controller: 'DashboardController',
         templateUrl: 'views/templates/dashboardStats.html' 
       })
       .state('dashboard.summary', {
         url: '/summary',
-        controller: 'DashboardController',
         templateUrl: 'views/templates/dashboardSummary.html'
       })
       .state('about', {

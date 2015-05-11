@@ -23,6 +23,7 @@ angular.module('EventsDashboard')
       $scope.allEvents = events;
       $scope.filteredEvents = _.sortBy(events, 'timestamp');
       $scope.countryCount = _.countBy($scope.filteredEvents, 'country');
+      $scope.$broadcast('countryCountReady');
       
       // the datepicker scope broadcasts an event when the dates change
       $scope.$on('dateChangeEvent', function() {

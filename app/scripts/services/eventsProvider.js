@@ -11,4 +11,17 @@ angular.module('EventsDashboard')
 				deferred.reject('Unable to fetch data from server.');
 			});
 		return deferred.promise;
-	}]);
+	}])
+  .factory('SecondaryEventsProvider', ['$q', 'SecondaryEventsFactory', function($q, SecondaryEvents) {
+    var deferred = $q.defer();
+    SecondaryEvents.query({}, function(secondaryE) {
+      deferred.resolve(secondaryE);
+    },
+    function(err) {
+      if (err.status === 404) {
+        return "Unable to find secondary events.";
+      }
+      deferred.reject('Unable to fetch secondary Events from the server.');
+    });
+    return deferred.promise;
+  }]);

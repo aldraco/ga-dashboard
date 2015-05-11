@@ -1,6 +1,7 @@
 angular.module('EventsDashboard')
   .controller('CountryDataCtrl', ['$scope', 'lodash', function($scope, _) {
 
+
     $scope.$watch('filteredEvents', function(newValue, oldValue) {
       if ($scope.countryCount) {
         countByCountry(newValue);
