@@ -27,7 +27,7 @@ angular.module('EventsDashboard')
     };
 
 
-    createColorFills();
+    //createColorFills();
 
     var countryMap = new Datamap({
       element: document.getElementById('countryMap'),
@@ -42,7 +42,7 @@ angular.module('EventsDashboard')
     $scope.$watch('filteredEvents', function(newValue, oldValue) {
       getMapData();
       countryMap.updateChoropleth($scope.mapData);
-      createColorFills();
+      
     });
 
     
@@ -51,6 +51,7 @@ angular.module('EventsDashboard')
       // create a range and generate colors based on the number of visits
       // colors are relative brightness to the country with the most hits
 
+      
       var d3Color   = d3.rgb('teal'),   // base color
              countries  = $scope.countryCount;
              
@@ -79,6 +80,7 @@ angular.module('EventsDashboard')
       // i.e. the country with 455 hits is looking for a color key of '455',
       // which corresponds with an appropriately scaled color.
       var mapData = $scope.countryCount;
+      createColorFills();
 
       return $scope.mapData = _.mapValues(mapData, function(num) {
         return  {
