@@ -32,7 +32,6 @@ angular.module('EventsDashboard')
           var container = [];
           container.push(eventsByWeek);
           $scope.weeks = eventsByWeek.length;
-          console.log("weeks", $scope.weeks);
           return container;
         }
         bucket++;
