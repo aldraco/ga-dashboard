@@ -1,19 +1,20 @@
 angular.module('EventsDashboard')
-.controller('DatepickerCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+.controller('DatepickerCtrl', ['$scope', function ($scope) {
 
   $scope.today = function() {
-    $rootScope.endDate = new Date();
-    $rootScope.startDate = new Date(2015, 0, 1);
+    $scope.endDate = new Date();
+    $scope.startDate = new Date(2015, 0, 1);
     $scope.maxDate = new Date();
   };
   $scope.today();
-
-  // date range for calculating changes as well as displaying the range
   
-
+  $scope.$watchGroup(['startDate', 'endDate'], function(newDates, oldDates, scope) {
+    // propogates date changes down to child scopes
+    $scope.$broadcast('dateChangeEvent');
+  });
 
   $scope.clear = function () {
-    $rootScope.startDate = null;
+    $scope.startDate = null;
   };
 
   // Disable weekend selection
@@ -43,4 +44,3 @@ angular.module('EventsDashboard')
 
 }]);
 
-// chosing a new end date resets the start date. Can't choose one before the other. 

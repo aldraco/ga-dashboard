@@ -17,7 +17,7 @@
     <!-- endbuild -->
       <link rel='stylesheet' href='util/libnotify.css'/>
   </head>
-  <body ng-app="EventsDashboard">
+  <body ng-app="EventsDashboard" ng-controller='DatepickerCtrl'>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -40,12 +40,34 @@
         </div>
         <div class="collapse navbar-collapse navbar-right">
           <ul class="nav navbar-nav">
-            <li class=''><a ui-sref="home" class="active">Home</a></li>
-            <li class=''><a ui-sref="dashboard.summary">Dashboard</a></li>
+            <!--<li class=''><a ui-sref="home" class="active">Home</a></li>-->
+            <li class=''><a ui-sref="dashboard.userStats">Dashboard</a></li>
             <li class=''><a ui-sref="about">About</a></li>
 
           </ul>
         </div>
+        <div class="container-fluid">
+          <div class="col-md-3">
+          <p class="input-group timepicker">
+            <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="startDate" is-open="startopen" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open($event, 'startopen')"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+          </p>
+        </div>
+          <div class="col-md-3">
+          <p class="input-group timepicker">
+            <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="endDate" is-open="endopen" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open($event, 'endopen')"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+          </p>
+        </div>
+      <div>
+      <p class="pull-right timepicker">Showing data from <em><span ng-bind="{{'startDate | date'}}"></span></em> to <em>{{endDate | date}}</em>.</p>
+    </div>
+      
+    </div>
       </div>
     </nav>
 

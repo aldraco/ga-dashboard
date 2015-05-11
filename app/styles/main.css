@@ -1,3 +1,11 @@
+nav.navbar-fixed-top {
+  padding: 0 5%;
+}
+
+.navbar-brand {
+  margin-right: 50px;
+}
+
 .dashboard-container {
 	margin-top: 50px;
 }
@@ -6,8 +14,29 @@
 	float: right;
 }
 
-p.timepicker {
+.dashboard-panel {
+  background-color: #eee;
+  box-sizing: border-box;
+  border: 2px solid gray;
+  border-radius: 10px;
+  padding: 0;
   margin: 10px 0;
+}
+
+.dashboard-panel header {
+  background-color: orange;
+  border-radius: 10px 10px 0 0;
+  height: 50px;
+  box-shadow: 0 0 2px black;
+  font-size: 1.6em;
+  color: white;
+  padding: 10px;
+}
+
+p.timepicker {
+  margin: 0 50px 0 0;
+  color: #eff;
+  padding: 10px;
 }
 
 .map {

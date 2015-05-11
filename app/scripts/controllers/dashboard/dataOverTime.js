@@ -1,8 +1,5 @@
 angular.module('EventsDashboard')
-  .controller('dataOverTimeCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
-    // inherits the Events from parent controller
-    // Also inherits the start and end dates from the date picker.
-
+  .controller('dataOverTimeCtrl', ['$scope', function($scope) {
 
     $scope.series = ['Data by Week'];
 
@@ -15,8 +12,6 @@ angular.module('EventsDashboard')
       }
       
     });
-
-    // this controller's job is to divide data over time.
 
     function divideByWeek(events) {
       // takes a filtered list of events to divide

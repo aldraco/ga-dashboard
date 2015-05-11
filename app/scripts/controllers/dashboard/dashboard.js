@@ -2,7 +2,8 @@
 
 
 angular.module('EventsDashboard')
-	.controller('DashboardController',['$scope', '$rootScope', 'EventsProvider', 'CountryCodes', 'lodash', function($scope, $rootScope, Events, Codes, _) {
+	.controller('DashboardController',['$scope', 'EventsProvider', 'CountryCodes', 'lodash', 
+                            function($scope, Events, Codes, _) {
 			
 		// initialization function
 		Events.then(function(events) {
@@ -23,13 +24,12 @@ angular.module('EventsDashboard')
       $scope.filteredEvents = _.sortBy(events, 'timestamp');
       $scope.countryCount = _.countBy($scope.filteredEvents, 'country');
       
-
-      
-      // watch the dates for changes
-      $scope.$watchGroup(['startDate', 'endDate'], function(newDates, oldDates, scope) {
-        var newValue = timeFilter($scope.allEvents, {startDate: newDates[0], endDate: newDates[1]});
+      // the datepicker scope broadcasts an event when the dates change
+      $scope.$on('dateChangeEvent', function() {
+        var newValue = timeFilter($scope.allEvents, {startDate: $scope.startDate, endDate: $scope.endDate});
         $scope.filteredEvents = newValue;
         $scope.countryCount = _.countBy(newValue, 'country');
+        // child scopes simply watch the filtered events for changes
       });
 
      

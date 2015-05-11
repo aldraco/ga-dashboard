@@ -26,20 +26,20 @@ angular
         templateUrl: 'views/dashboard.html',
         controller: ''
       })
-      .state('dashboard.summary', {
-        url: '/summary',
-        controller: 'DashboardController',
-        templateUrl: 'views/templates/dashboardSummary.html'
-      })
       .state('dashboard.userStats', {
         url: '/user-statistics',
         controller: 'DashboardController',
         templateUrl: 'views/templates/dashboardStats.html' 
+      })
+      .state('dashboard.summary', {
+        url: '/summary',
+        controller: 'DashboardController',
+        templateUrl: 'views/templates/dashboardSummary.html'
       })
       .state('about', {
         url: '/about',
         controller: 'AboutCtrl',
         templateUrl: 'views/about.html'
       });
-      $urlRouterProvider.otherwise('/');
+      $urlRouterProvider.otherwise('/dashboard');
   }]);

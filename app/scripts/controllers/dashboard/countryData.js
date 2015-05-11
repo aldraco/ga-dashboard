@@ -1,5 +1,5 @@
 angular.module('EventsDashboard')
-  .controller('CountryDataCtrl', ['$scope', '$rootScope', 'lodash', function($scope, $rootScope, _) {
+  .controller('CountryDataCtrl', ['$scope', 'lodash', function($scope, _) {
 
     $scope.$watch('filteredEvents', function(newValue, oldValue) {
       if ($scope.countryCount) {
@@ -26,9 +26,6 @@ angular.module('EventsDashboard')
       defaultFill : 'rgba(210,210,210, 1)'
     };
 
-
-    //createColorFills();
-
     var countryMap = new Datamap({
       element: document.getElementById('countryMap'),
       projection: 'mercator',
@@ -38,11 +35,9 @@ angular.module('EventsDashboard')
       data: $scope.mapData
     });
     
-
     $scope.$watch('filteredEvents', function(newValue, oldValue) {
       getMapData();
       countryMap.updateChoropleth($scope.mapData);
-      
     });
 
     
