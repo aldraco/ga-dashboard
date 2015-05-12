@@ -3,20 +3,26 @@
 
   <div class="col-md-12 container-fluid dashboard-panel">
   <header>Visits per country, over time</header>
+  <main>
     <div id="countryMap" class="map" ng-controller='ChoroplethMapCtrl'></div>
+    </main>
   </div>
   <span></span>
 
 </div>	
 <div>
-  <div class="col-md-6 dashboard-panel" ng-controller="CountryDataCtrl">
+  <div class="col-md-5 dashboard-panel" ng-controller="CountryDataCtrl">
   <header>Visits per country, over time</header>
+  <main>
     <canvas id="pie" class="chart chart-pie" data="byCountry.data" labels="byCountry.labels"></canvas>
+    </main>
   </div>  
+  <div class='col-md-1'></div>
 
   <div class="col-md-6 dashboard-panel" ng-controller="dataOverTimeCtrl">
   <header>Total visits, by week</header>
-    <canvas id="line" class="chart chart-line" data="byWeek.data" labels="byWeek.labels" legend="true" series="series" click="onClick"></canvas> 
+  <main>
+    <canvas id="line" class="chart chart-line" data="byWeek.data" labels="byWeek.labels" legend="true" series="series" click="onClick"></canvas> <main>
   </div>
 
 </div>

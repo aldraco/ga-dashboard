@@ -1,5 +1,18 @@
+body {
+  background-color: #ddd;
+}
+
 nav.navbar-fixed-top {
   padding: 0 5%;
+}
+
+.nav.nav-pills li {
+  background-color: white;
+  border-radius: 5px;
+}
+.nav.nav-pills button {
+  width: 100%;
+
 }
 
 .navbar-brand {
@@ -15,12 +28,12 @@ nav.navbar-fixed-top {
 }
 
 .dashboard-panel {
-  background-color: #eee;
+  background-color: #fff;
   box-sizing: border-box;
-  border: 2px solid gray;
+  border: 1px solid #777;
   border-radius: 10px;
-  padding: 0;
   margin: 10px 0;
+  box-shadow: 1px 0 2px #888;
 }
 
 .dashboard-panel header {
@@ -30,6 +43,9 @@ nav.navbar-fixed-top {
   box-shadow: 0 0 2px black;
   font-size: 1.6em;
   color: white;
+  padding: 10px;
+}
+.dashboard-panel main {
   padding: 10px;
 }
 

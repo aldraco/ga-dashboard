@@ -10,7 +10,7 @@ angular.module('EventsDashboard')
   
   $scope.$watchGroup(['startDate', 'endDate'], function(newDates, oldDates, scope) {
     // propogates date changes down to child scopes
-    $scope.$broadcast('dateChangeEvent');
+    $scope.$broadcast('dataChangeEvent');
   });
 
   $scope.clear = function () {
